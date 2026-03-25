@@ -17,7 +17,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* NAVBAR - CONSISTENT BLACK STYLE */
+/* NAVBAR */
 nav {
   display: flex;
   justify-content: space-between;
@@ -29,8 +29,16 @@ nav {
   top: 0;
   z-index: 1000;
 }
+
 nav .logo { width: 100px; height: auto; }
-nav .nav-links a {
+
+/* NAV LINKS CONTAINER */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
   color: white;
   margin-left: 20px;
   text-decoration: none;
@@ -38,24 +46,28 @@ nav .nav-links a {
   font-size: 14px;
   transition: 0.3s;
 }
-nav .nav-links a:hover { color: #2563eb; }
 
-/* Updated Cart Icon Styling */
+.nav-links a:hover { color: #2563eb; }
+
+/* HAMBURGER MENU */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* CART STYLING */
 .cart {
   position: relative;
   cursor: pointer;
   color: white;
   font-size: 20px;
+  margin-left: 20px;
 }
 
-.cart-icon {
-  color: white;
-  transition: 0.3s;
-}
-
-.cart:hover .cart-icon {
-  color: #2563eb;
-}
+.cart-icon { transition: 0.3s; }
+.cart:hover .cart-icon { color: #2563eb; }
 
 .cart span {
   position: absolute;
@@ -156,14 +168,37 @@ nav .nav-links a:hover { color: #2563eb; }
 footer { background: #0f172a; color: #fff; padding: 60px 8% 20px; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
 .footer-grid h3 { margin-bottom: 20px; font-size: 18px; }
-.footer-grid a { display: block; color: #ccc; text-decoration: none; margin-bottom: 12px; font-size: 14px; }
+.footer-grid p, .footer-grid a { display: block; color: #ccc; text-decoration: none; margin-bottom: 12px; font-size: 14px; line-height: 1.8; }
 .footer-grid a:hover { color: white; }
 .footer-bottom { text-align: center; border-top: 1px solid #333; margin-top: 50px; padding-top: 20px; font-size: 13px; color: #888; }
 
+/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
-  nav { flex-direction: column; gap: 15px; padding: 20px; }
+  nav { padding: 15px 25px; }
+  
+  .menu-toggle { display: block; order: 2; }
+  .logo { order: 1; }
+
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    background: #000;
+    flex-direction: column;
+    display: none;
+    padding: 20px 0;
+    border-top: 1px solid #222;
+  }
+
+  .nav-links.active { display: flex; }
+  .nav-links a { margin: 12px 0; font-size: 18px; margin-left: 0; }
+  
+  .cart { margin: 20px 0 10px 0; font-size: 22px; }
+
   .hero h1 { font-size: 32px; }
   .quote-box { padding: 30px 20px; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
 }
 </style>
 </head>
@@ -171,18 +206,24 @@ footer { background: #0f172a; color: #fff; padding: 60px 8% 20px; }
 <body>
 
 <nav>
-  <img src="nardeslogo.png" class="logo" alt="Nardes Group">
+  <img src="nardeslogo.png" class="logo" alt="Nardes Group Logo">
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
   <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
-    <a href="solutions.html">Solutions</a>
+    <a href="solutions.html" style="color:#2563eb;">Solutions</a>
     <a href="services.html">Services</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </div>
-  <div class="cart" onclick="window.location.href='cart.html'">
-    <i class="fa-solid fa-cart-shopping cart-icon"></i>
-    <span id="cartCount">0</span>
+    
+    <div class="cart" onclick="window.location.href='cart.html'">
+      <i class="fa-solid fa-cart-shopping cart-icon"></i>
+      <span id="cartCount">0</span>
+    </div>
   </div>
 </nav>
 
@@ -219,11 +260,8 @@ footer { background: #0f172a; color: #fff; padding: 60px 8% 20px; }
     <h2>Request a Project Quote</h2>
     
     <form action="https://api.web3forms.com/submit" method="POST">
-      
       <input type="hidden" name="access_key" value="bd4e626b-8a7d-4d33-8619-825741cb8e83">
-
       <input type="hidden" name="subject" value="New Solution Quote Request - Nardes Group">
-
       <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
       <div class="form-group">
@@ -252,7 +290,6 @@ footer { background: #0f172a; color: #fff; padding: 60px 8% 20px; }
       </div>
 
       <button type="submit" class="submit-btn">Send My Request</button>
-      
     </form>
   </div>
 </section>
@@ -279,15 +316,24 @@ footer { background: #0f172a; color: #fff; padding: 60px 8% 20px; }
       <h3>Contact</h3>
       <p>Email: info.nardes2@gmail.com</p>
       <p>Phone: +233 (0)27 255 8435 </p>
-      <p>Location: Ghana</p>
+      <p>Location: Accra, Ghana</p>
     </div>
   </div>
   <div class="footer-bottom">
-    © 2026 Nardes Group Limited 
+    © 2026 Nardes Group Limited | Smart Electrical & Automation Solutions
   </div>
 </footer>
 
 <script>
+  /* MENU TOGGLE */
+  function toggleMenu(){
+    document.querySelector(".nav-links").classList.toggle("active");
+    const icon = document.querySelector(".menu-toggle i");
+    icon.classList.toggle("fa-bars");
+    icon.classList.toggle("fa-xmark");
+  }
+
+  /* UPDATE CART COUNT */
   function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let count = cart.reduce((sum, item) => sum + item.qty, 0);
