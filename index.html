@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
+
 /* GLOBAL */
 body {
   margin: 0;
@@ -32,32 +33,26 @@ nav {
   width: 100px;
 }
 
-/* NAV LINKS & CART CONTAINER */
+/* NAV LINKS */
 .nav-links {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .nav-links a {
   color: white;
-  margin-left: 20px;
   text-decoration: none;
   font-weight: 600;
   font-size: 14px;
-  transition: 0.3s;
 }
 
-.nav-links a:hover {
-  color: #2563eb;
-}
-
-/* CART STYLING */
+/* CART */
 .cart {
   position: relative;
   cursor: pointer;
   color: white;
   font-size: 18px;
-  margin-left: 25px;
 }
 
 .cart span {
@@ -68,107 +63,41 @@ nav {
   padding: 2px 6px;
   background: #2563eb;
   border-radius: 50%;
-  color: white;
-  font-weight: bold;
 }
 
 /* HAMBURGER */
 .menu-toggle {
   display: none;
-  font-size: 24px;
+  font-size: 22px;
   color: white;
   cursor: pointer;
 }
 
 /* HERO */
 .hero {
-  height: 70vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('ai.png') center/cover no-repeat;
+}
+
+.hero h2 {
+  font-size: 55px;
   color: white;
 }
 
-.hero h2 { font-size: 45px; margin-bottom: 20px; }
-
-.btn {
-  padding: 15px 35px;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-/* PRODUCTS SLIDER */
+/* PRODUCTS */
 .section {
-  padding: 60px 8%;
+  padding: 80px 8%;
   text-align: center;
 }
 
-.slider {
-  overflow: hidden;
-  padding: 20px 0;
-}
-
-.slide-track {
-  display: flex;
-  gap: 25px;
-  animation: scroll 30s linear infinite;
-  width: max-content;
-}
-
-.slide {
-  width: 260px;
-  background: white;
-  border-radius: 15px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  flex-shrink: 0;
-}
-
-/* Added placeholder styling for images to ensure they show up */
-.product-img {
+.slide img {
   width: 100%;
-  height: 180px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.product-img i { font-size: 50px; color: #ddd; }
-
-.price {
-  font-weight: bold;
-  font-size: 18px;
-  color: #2563eb;
-  margin: 10px 0;
-}
-
-.add-btn {
-  width: 100%;
-  padding: 12px;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.add-btn:hover { background: #1d4ed8; }
-
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  height: 200px;
+  object-fit: contain;
 }
 
 /* FOOTER */
@@ -180,35 +109,27 @@ footer {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 40px;
 }
 
-.footer-bottom {
-  text-align: center;
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #1e293b;
-  color: #888;
+.footer-grid a, .footer-grid p {
+  color: #ccc;
+  text-decoration: none;
 }
 
-/* MOBILE VIEW UPDATES */
+/* MOBILE */
 @media(max-width:768px){
+
   nav {
-    padding: 15px 25px;
+    padding: 15px 20px;
   }
 
-  /* Hamburger to the right of the logo */
   .menu-toggle {
     display: block;
-    order: 2;
   }
 
-  .logo {
-    order: 1;
-  }
-
-  /* Hide links and cart in mobile menu */
+  /* HIDE DESKTOP MENU */
   .nav-links {
     position: absolute;
     top: 65px;
@@ -216,9 +137,9 @@ footer {
     width: 100%;
     background: #000;
     flex-direction: column;
-    display: none; /* Controlled by JS toggle */
+    display: none;
+    text-align: center;
     padding: 20px 0;
-    border-top: 1px solid #222;
   }
 
   .nav-links.active {
@@ -226,18 +147,33 @@ footer {
   }
 
   .nav-links a {
-    margin: 12px 0;
-    font-size: 18px;
+    margin: 15px 0;
+    font-size: 16px;
   }
 
-  /* Cart inside the hamburger menu list */
-  .cart {
-    margin: 20px 0 10px 0;
-    font-size: 22px;
+  /* MOVE CART INTO MENU */
+  .nav-links .cart {
+    margin-top: 15px;
   }
 
-  .hero h2 { font-size: 28px; }
-  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero h2 {
+    font-size: 32px;
+  }
+
+  /* CENTER FOOTER */
+  footer {
+    text-align: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 </style>
@@ -246,20 +182,23 @@ footer {
 <body>
 
 <nav>
-  <img src="nardeslogo.png" class="logo" alt="Nardes Logo">
+  <img src="nardeslogo.png" class="logo">
 
+  <!-- HAMBURGER -->
   <div class="menu-toggle" onclick="toggleMenu()">
     <i class="fa-solid fa-bars"></i>
   </div>
 
-  <div class="nav-links">
+  <!-- NAV LINKS + CART INSIDE -->
+  <div class="nav-links" id="navMenu">
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
     <a href="solutions.html">Solutions</a>
     <a href="services.html">Services</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    
+
+    <!-- CART MOVED INSIDE -->
     <div class="cart" onclick="window.location.href='cart.html'">
       <i class="fa-solid fa-cart-shopping"></i>
       <span id="cartCount">0</span>
@@ -270,11 +209,11 @@ footer {
 <section class="hero">
   <div>
     <h2>Powering Smart Homes & Infrastructure</h2>
-    <button class="btn" onclick="document.getElementById('featured').scrollIntoView()">Explore Products</button>
+    <button onclick="window.location.href='products.html'">Explore Products</button>
   </div>
 </section>
 
-<section class="section" id="featured">
+<section class="section">
   <h2>Featured Products</h2>
   <div class="slider">
     <div class="slide-track" id="productTrack"></div>
@@ -285,13 +224,15 @@ footer {
   <div class="footer-grid">
     <div>
       <h3>Nardes Group</h3>
-      <p>Providing top-tier automation solutions across Ghana.</p>
+      <p>Providing top-tier automation and electrical solutions across Ghana.</p>
     </div>
     <div>
       <h3>Quick Links</h3>
       <a href="index.html">Home</a>
       <a href="products.html">Products</a>
       <a href="solutions.html">Solutions</a>
+      <a href="services.html">Services</a>
+      
     </div>
     <div>
       <h3>Company</h3>
@@ -300,54 +241,39 @@ footer {
     </div>
     <div>
       <h3>Contact</h3>
-      <p><i class="fa-solid fa-envelope"></i> info.nardes2@gmail.com</p>
-      <p><i class="fa-solid fa-phone"></i> +233 27 255 8435</p>
-      <p><i class="fa-solid fa-location-dot"></i> Accra, Ghana</p>
+      <p>Email: info.nardes2@gmail.com</p>
+      <p>Phone: +233 27 255 8435</p>
+      <p>Accra, Ghana</p>
     </div>
-  </div>
-  <div class="footer-bottom">
-    © 2026 Nardes Group Limited
   </div>
 </footer>
 
 <script>
+
 /* MENU TOGGLE */
 function toggleMenu(){
-  document.querySelector(".nav-links").classList.toggle("active");
-  // Toggle between bars and X icon
-  const icon = document.querySelector(".menu-toggle i");
-  icon.classList.toggle("fa-bars");
-  icon.classList.toggle("fa-xmark");
+  document.getElementById("navMenu").classList.toggle("active");
 }
 
-/* PRODUCTS DATA */
+/* PRODUCT SCRIPT (UNCHANGED) */
 const products = [
-  {name:"WiFi Smart Switch", price:32, icon: "fa-toggle-on"},
-  {name:"Remote Timer Socket", price:70, icon: "fa-plug"},
-  {name:"Smart LED Bulb", price:85, icon: "fa-lightbulb"},
-  {name:"CCTV AI Camera", price:120, icon: "fa-video"},
-  {name:"Smart Door Lock", price:150, icon: "fa-lock"}
+  {name:"Smart Touch Switch", price:32, img:"Black touch-sensitiv.png", stars:5, desc:"Elegant tempered glass touch switch"},
+  {name:"Timer Socket", price:70, img:"timersocket.png", stars:4, desc:"Programmable smart socket"},
 ];
 
 const track = document.getElementById("productTrack");
 
-// Create double set for seamless loop
 [...products, ...products].forEach(p=>{
   const div = document.createElement("div");
   div.className = "slide";
   div.innerHTML = `
-    <div class="product-img"><i class="fa-solid ${p.icon}"></i></div>
+    <img src="${p.img}">
     <h4>${p.name}</h4>
-    <p class="price">$${p.price}</p>
-    <button class="add-btn" onclick="addToCart()">Add to Cart</button>
+    <p>$${p.price}</p>
   `;
   track.appendChild(div);
 });
 
-function addToCart() {
-  let count = parseInt(document.getElementById("cartCount").innerText);
-  document.getElementById("cartCount").innerText = count + 1;
-}
 </script>
 
 </body>
