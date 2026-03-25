@@ -14,7 +14,7 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: #f5f5f5;
   color: #111;
-  scroll-behavior: smooth;
+  line-height: 1.6;
 }
 
 /* NAVBAR */
@@ -56,8 +56,8 @@ nav .logo { width: 100px; height: auto; }
   cursor: pointer;
 }
 
-/* CART STYLING */
-.cart {
+/* CART ICON */
+.cart-nav {
   position: relative;
   cursor: pointer;
   color: white;
@@ -65,10 +65,7 @@ nav .logo { width: 100px; height: auto; }
   margin-left: 20px;
 }
 
-.cart-icon { transition: 0.3s; }
-.cart:hover .cart-icon { color: #2563eb; }
-
-.cart span {
+.cart-nav span {
   position: absolute;
   top: -10px;
   right: -10px;
@@ -100,10 +97,9 @@ nav .logo { width: 100px; height: auto; }
   align-items: center;
   background: #fff;
   padding: 25px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: 0.3s;
 }
 
 .item-info {
@@ -113,27 +109,26 @@ nav .logo { width: 100px; height: auto; }
 }
 
 .item-info img {
-  width: 110px;
-  height: 110px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #f8f9fa;
-  padding: 12px;
+  padding: 10px;
   border: 1px solid #eee;
 }
 
 .item-details h3 {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   color: #0f172a;
 }
 
 .item-details p {
   color: #64748b;
   font-size: 14px;
-  margin: 8px 0;
-  max-width: 450px;
-  line-height: 1.5;
+  margin: 5px 0;
+  max-width: 400px;
 }
 
 .item-price {
@@ -142,8 +137,8 @@ nav .logo { width: 100px; height: auto; }
   font-size: 18px;
 }
 
-/* QUANTITY CONTROLS */
-.controls-wrapper {
+/* QUANTITY & ACTIONS */
+.item-actions {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -154,25 +149,17 @@ nav .logo { width: 100px; height: auto; }
   align-items: center;
   gap: 15px;
   background: #f1f5f9;
-  padding: 10px 18px;
-  border-radius: 30px;
+  padding: 8px 15px;
+  border-radius: 25px;
 }
 
 .quantity button {
   border: none;
   background: none;
-  font-size: 20px;
+  font-size: 18px;
   cursor: pointer;
   color: #2563eb;
   font-weight: bold;
-  padding: 0 5px;
-}
-
-.quantity span {
-  font-weight: bold;
-  min-width: 25px;
-  text-align: center;
-  font-size: 16px;
 }
 
 .remove {
@@ -180,35 +167,29 @@ nav .logo { width: 100px; height: auto; }
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
-  transition: 0.2s;
 }
 
-.remove:hover { color: #b91c1c; text-decoration: underline; }
+.remove:hover { text-decoration: underline; }
 
-/* SUMMARY BOX */
+/* TOTALS */
 .total-box {
-  margin-top: 40px;
-  padding: 35px;
+  margin-top: 30px;
+  padding: 30px;
   background: #fff;
-  border-radius: 15px;
+  border-radius: 12px;
   text-align: right;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-.total-box h3 {
-  margin: 0;
-  font-size: 28px;
-  color: #0f172a;
-}
+.total-box h3 { font-size: 26px; color: #0f172a; margin-bottom: 20px; }
 
 .checkout-btn {
   display: inline-block;
-  margin-top: 25px;
-  padding: 18px 60px;
+  padding: 15px 50px;
   background: #2563eb;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   font-weight: bold;
   font-size: 16px;
   cursor: pointer;
@@ -217,13 +198,12 @@ nav .logo { width: 100px; height: auto; }
 
 .checkout-btn:hover {
   background: #0f172a;
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+  transform: translateY(-2px);
 }
 
-.empty {
+.empty-state {
   text-align: center;
-  padding: 100px 20px;
+  padding: 80px 20px;
   color: #64748b;
 }
 
@@ -241,15 +221,7 @@ footer {
 }
 
 .footer-grid h3 { margin-bottom: 20px; }
-.footer-grid p, .footer-grid a {
-  display: block;
-  color: #ccc;
-  text-decoration: none;
-  margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 1.8;
-}
-
+.footer-grid a { color: #ccc; text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; }
 .footer-grid a:hover { color: white; }
 
 .footer-bottom {
@@ -261,12 +233,12 @@ footer {
   color: #888;
 }
 
-/* MOBILE RESPONSIVE */
-@media(max-width: 768px){
-  nav { padding: 15px 25px; }
+/* RESPONSIVE */
+@media(max-width: 768px) {
+  nav { padding: 15px 20px; }
   .menu-toggle { display: block; order: 2; }
   .logo { order: 1; }
-
+  
   .nav-links {
     position: absolute;
     top: 65px;
@@ -276,30 +248,25 @@ footer {
     flex-direction: column;
     display: none;
     padding: 20px 0;
-    border-top: 1px solid #222;
   }
-
+  
   .nav-links.active { display: flex; }
-  .nav-links a { margin: 12px 0; font-size: 18px; margin-left: 0; }
-  .cart { margin: 20px 0 10px 0; font-size: 22px; }
+  .nav-links a { margin: 10px 0; font-size: 16px; }
 
   .cart-item { flex-direction: column; text-align: center; gap: 20px; }
-  .item-info { flex-direction: column; gap: 15px; }
-  .controls-wrapper { flex-direction: column; width: 100%; }
-  .quantity { width: fit-content; margin: 0 auto; }
+  .item-info { flex-direction: column; }
+  .item-actions { flex-direction: column; gap: 10px; }
   
   .total-box { text-align: center; }
   .checkout-btn { width: 100%; }
-  .footer-grid { grid-template-columns: 1fr; text-align: center; }
 }
 </style>
 </head>
-
 <body>
 
 <nav>
-  <img src="nardeslogo.png" class="logo" alt="Nardes Group Logo">
-
+  <img src="nardeslogo.png" class="logo" alt="Nardes Logo">
+  
   <div class="menu-toggle" onclick="toggleMenu()">
     <i class="fa-solid fa-bars"></i>
   </div>
@@ -311,9 +278,8 @@ footer {
     <a href="services.html">Services</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    
-    <div class="cart" onclick="window.location.href='cart.html'">
-      <i class="fa-solid fa-cart-shopping cart-icon" style="color:#2563eb;"></i>
+    <div class="cart-nav" onclick="window.location.href='cart.html'">
+      <i class="fa-solid fa-cart-shopping"></i>
       <span id="cartCount">0</span>
     </div>
   </div>
@@ -352,7 +318,7 @@ footer {
     <div>
       <h3>Contact</h3>
       <p>Email: info.nardes2@gmail.com</p>
-      <p>Phone: +233 (0)27 255 8435 </p>
+      <p>Phone: +233 (0)27 255 8435</p>
       <p>Location: Accra, Ghana</p>
     </div>
   </div>
@@ -362,28 +328,26 @@ footer {
 </footer>
 
 <script>
-/* MENU TOGGLE */
-function toggleMenu(){
-  document.querySelector(".nav-links").classList.toggle("active");
-  const icon = document.querySelector(".menu-toggle i");
-  icon.classList.toggle("fa-bars");
-  icon.classList.toggle("fa-xmark");
+/* MOBILE MENU TOGGLE */
+function toggleMenu() {
+  document.querySelector('.nav-links').classList.toggle('active');
 }
 
-/* CART LOGIC */
-function loadCart(){
+/* CART FUNCTIONALITY */
+function loadCart() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const container = document.getElementById("cartItems");
   const summary = document.getElementById("summaryArea");
   container.innerHTML = "";
+
   let total = 0;
 
-  if(cart.length === 0){
+  if (cart.length === 0) {
     container.innerHTML = `
-      <div class='empty'>
-        <i class="fa-solid fa-cart-arrow-down" style="font-size: 50px; color: #cbd5e1; margin-bottom: 20px;"></i>
-        <p style="font-size: 18px;">Your cart is empty.</p>
-        <a href="products.html" class="checkout-btn" style="text-decoration:none;">Explore Products</a>
+      <div class='empty-state'>
+        <i class="fa-solid fa-cart-plus" style="font-size: 50px; color: #cbd5e1; margin-bottom: 20px;"></i>
+        <p>Your cart is empty.</p>
+        <a href="products.html" class="checkout-btn" style="text-decoration:none;">Start Shopping</a>
       </div>`;
     summary.style.display = "none";
     updateCartCount();
@@ -392,29 +356,26 @@ function loadCart(){
 
   summary.style.display = "block";
 
-  cart.forEach((item, index)=>{
+  cart.forEach((item, index) => {
     total += item.price * item.qty;
-
     container.innerHTML += `
       <div class="cart-item">
         <div class="item-info">
           <img src="${item.img}" alt="${item.name}">
           <div class="item-details">
             <h3>${item.name}</h3>
-            <p>${item.desc || 'Quality smart solution for your home or business.'}</p>
+            <p>${item.desc || 'Quality smart solution for your home.'}</p>
             <p class="item-price">$${item.price}</p>
           </div>
         </div>
 
-        <div class="controls-wrapper">
-            <div class="quantity">
-              <button onclick="decreaseQty(${index})">−</button>
-              <span>${item.qty}</span>
-              <button onclick="increaseQty(${index})">+</button>
-            </div>
-            <div class="remove" onclick="removeItem(${index})">
-               <i class="fa-solid fa-trash-can"></i> Remove
-            </div>
+        <div class="item-actions">
+          <div class="quantity">
+            <button onclick="decreaseQty(${index})">−</button>
+            <span>${item.qty}</span>
+            <button onclick="increaseQty(${index})">+</button>
+          </div>
+          <div class="remove" onclick="removeItem(${index})"><i class="fa-solid fa-trash"></i> Remove</div>
         </div>
       </div>
     `;
@@ -424,23 +385,22 @@ function loadCart(){
   updateCartCount();
 }
 
-function updateCartCount(){
+function updateCartCount() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   let count = cart.reduce((sum, item) => sum + item.qty, 0);
-  const badge = document.getElementById("cartCount");
-  if(badge) badge.innerText = count;
+  document.getElementById("cartCount").innerText = count;
 }
 
-function increaseQty(index){
+function increaseQty(index) {
   let cart = JSON.parse(localStorage.getItem("cart"));
   cart[index].qty++;
   localStorage.setItem("cart", JSON.stringify(cart));
   loadCart();
 }
 
-function decreaseQty(index){
+function decreaseQty(index) {
   let cart = JSON.parse(localStorage.getItem("cart"));
-  if(cart[index].qty > 1){
+  if (cart[index].qty > 1) {
     cart[index].qty--;
   } else {
     removeItem(index);
@@ -450,18 +410,15 @@ function decreaseQty(index){
   loadCart();
 }
 
-function removeItem(index){
-  if(confirm("Remove this item from your cart?")){
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    cart.splice(index,1);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    loadCart();
-  }
+function removeItem(index) {
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  cart.splice(index, 1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
 }
 
 function handleCheckout() {
-    alert('Proceeding to secure checkout...');
-    // Implementation for Paystack or custom checkout page goes here
+    alert('Redirecting to secure payment portal...');
 }
 
 // Initial load
