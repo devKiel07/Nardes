@@ -14,7 +14,6 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: #f5f5f5;
   color: #111;
-  line-height: 1.6;
 }
 
 /* NAVBAR */
@@ -32,10 +31,7 @@ nav {
 
 nav .logo { width: 100px; height: auto; }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-}
+.nav-links { display: flex; align-items: center; }
 
 .nav-links a {
   color: white;
@@ -96,25 +92,26 @@ nav .logo { width: 100px; height: auto; }
   justify-content: space-between;
   align-items: center;
   background: #fff;
-  padding: 25px;
+  padding: 20px;
   margin-bottom: 15px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
 }
 
 .item-info {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 20px;
 }
 
 .item-info img {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
   border-radius: 8px;
   background: #f8f9fa;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #eee;
 }
 
@@ -127,18 +124,16 @@ nav .logo { width: 100px; height: auto; }
 .item-details p {
   color: #64748b;
   font-size: 14px;
-  margin: 5px 0;
-  max-width: 400px;
+  margin: 4px 0;
 }
 
 .item-price {
   font-weight: 800;
   color: #2563eb;
-  font-size: 18px;
 }
 
-/* QUANTITY & ACTIONS */
-.item-actions {
+/* QUANTITY & REMOVE */
+.item-controls {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -147,7 +142,7 @@ nav .logo { width: 100px; height: auto; }
 .quantity {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 12px;
   background: #f1f5f9;
   padding: 8px 15px;
   border-radius: 25px;
@@ -162,14 +157,18 @@ nav .logo { width: 100px; height: auto; }
   font-weight: bold;
 }
 
-.remove {
+.remove-btn {
   color: #ef4444;
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: 0.2s;
 }
 
-.remove:hover { text-decoration: underline; }
+.remove-btn:hover { color: #b91c1c; }
 
 /* TOTALS */
 .total-box {
@@ -201,13 +200,13 @@ nav .logo { width: 100px; height: auto; }
   transform: translateY(-2px);
 }
 
-.empty-state {
+.empty-cart {
   text-align: center;
   padding: 80px 20px;
   color: #64748b;
 }
 
-/* FOOTER */
+/* FOOTER - MATCHED TO PRODUCTS.HTML */
 footer {
   background: #0f172a;
   color: #fff;
@@ -220,9 +219,18 @@ footer {
   gap: 40px;
 }
 
-.footer-grid h3 { margin-bottom: 20px; }
-.footer-grid a { color: #ccc; text-decoration: none; display: block; margin-bottom: 10px; font-size: 14px; }
-.footer-grid a:hover { color: white; }
+.footer-grid h3 { margin-bottom: 20px; color: #fff; }
+
+.footer-grid a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.footer-grid a:hover { color: #2563eb; padding-left: 5px; }
 
 .footer-bottom {
   text-align: center;
@@ -248,14 +256,16 @@ footer {
     flex-direction: column;
     display: none;
     padding: 20px 0;
+    border-top: 1px solid #222;
   }
   
   .nav-links.active { display: flex; }
-  .nav-links a { margin: 10px 0; font-size: 16px; }
+  .nav-links a { margin: 12px 0; font-size: 18px; margin-left: 0; }
+  .cart-nav { margin: 15px 0; font-size: 22px; }
 
   .cart-item { flex-direction: column; text-align: center; gap: 20px; }
   .item-info { flex-direction: column; }
-  .item-actions { flex-direction: column; gap: 10px; }
+  .item-controls { flex-direction: column; width: 100%; }
   
   .total-box { text-align: center; }
   .checkout-btn { width: 100%; }
@@ -301,7 +311,7 @@ footer {
   <div class="footer-grid">
     <div>
       <h3>Nardes Group</h3>
-      <p>Providing top-tier automation and electrical solutions across Ghana.</p>
+      <p style="color: #ccc; font-size: 14px; line-height: 1.6;">Providing top-tier automation and electrical solutions across Ghana. We bring intelligence to your space.</p>
     </div>
     <div>
       <h3>Quick Links</h3>
@@ -317,9 +327,9 @@ footer {
     </div>
     <div>
       <h3>Contact</h3>
-      <p>Email: info.nardes2@gmail.com</p>
-      <p>Phone: +233 (0)27 255 8435</p>
-      <p>Location: Accra, Ghana</p>
+      <p style="color: #ccc; font-size: 14px; margin-bottom: 8px;">Email: info.nardes2@gmail.com</p>
+      <p style="color: #ccc; font-size: 14px; margin-bottom: 8px;">Phone: +233 (0)27 255 8435</p>
+      <p style="color: #ccc; font-size: 14px;">Location: Accra, Ghana</p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -328,26 +338,23 @@ footer {
 </footer>
 
 <script>
-/* MOBILE MENU TOGGLE */
 function toggleMenu() {
   document.querySelector('.nav-links').classList.toggle('active');
 }
 
-/* CART FUNCTIONALITY */
 function loadCart() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   const container = document.getElementById("cartItems");
   const summary = document.getElementById("summaryArea");
   container.innerHTML = "";
-
   let total = 0;
 
   if (cart.length === 0) {
     container.innerHTML = `
-      <div class='empty-state'>
-        <i class="fa-solid fa-cart-plus" style="font-size: 50px; color: #cbd5e1; margin-bottom: 20px;"></i>
-        <p>Your cart is empty.</p>
-        <a href="products.html" class="checkout-btn" style="text-decoration:none;">Start Shopping</a>
+      <div class='empty-cart'>
+        <i class="fa-solid fa-cart-arrow-down" style="font-size: 48px; color: #cbd5e1; margin-bottom: 20px;"></i>
+        <p style="font-size: 18px;">Your cart is empty.</p>
+        <a href="products.html" class="checkout-btn" style="text-decoration:none; display:inline-block; margin-top:15px;">Explore Products</a>
       </div>`;
     summary.style.display = "none";
     updateCartCount();
@@ -364,18 +371,20 @@ function loadCart() {
           <img src="${item.img}" alt="${item.name}">
           <div class="item-details">
             <h3>${item.name}</h3>
-            <p>${item.desc || 'Quality smart solution for your home.'}</p>
-            <p class="item-price">$${item.price}</p>
+            <p>${item.desc || 'Premium Smart Device'}</p>
+            <p class="item-price">$${item.price.toLocaleString()}</p>
           </div>
         </div>
 
-        <div class="item-actions">
+        <div class="item-controls">
           <div class="quantity">
             <button onclick="decreaseQty(${index})">−</button>
             <span>${item.qty}</span>
             <button onclick="increaseQty(${index})">+</button>
           </div>
-          <div class="remove" onclick="removeItem(${index})"><i class="fa-solid fa-trash"></i> Remove</div>
+          <div class="remove-btn" onclick="removeItem(${index})">
+            <i class="fa-solid fa-trash-can"></i> Remove
+          </div>
         </div>
       </div>
     `;
@@ -388,7 +397,8 @@ function loadCart() {
 function updateCartCount() {
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   let count = cart.reduce((sum, item) => sum + item.qty, 0);
-  document.getElementById("cartCount").innerText = count;
+  const cartBadge = document.getElementById("cartCount");
+  if(cartBadge) cartBadge.innerText = count;
 }
 
 function increaseQty(index) {
@@ -402,26 +412,26 @@ function decreaseQty(index) {
   let cart = JSON.parse(localStorage.getItem("cart"));
   if (cart[index].qty > 1) {
     cart[index].qty--;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
   } else {
     removeItem(index);
-    return;
   }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  loadCart();
 }
 
 function removeItem(index) {
-  let cart = JSON.parse(localStorage.getItem("cart"));
-  cart.splice(index, 1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  loadCart();
+  if(confirm("Are you sure you want to remove this item?")) {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
+  }
 }
 
 function handleCheckout() {
-    alert('Redirecting to secure payment portal...');
+    alert('Moving to secure checkout...');
 }
 
-// Initial load
 loadCart();
 </script>
 
