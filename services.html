@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Services | Nardes Group</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* BODY */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+  color: #111;
+}
+
+/* NAVBAR - MATCHED TO OTHER PAGES */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background: #000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .logo {
+  width: 100px;
+  height: auto;
+}
+
+nav .nav-links a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+nav .nav-links a:hover {
+  color: #2563eb;
+}
+
+/* Updated Cart Icon Styling */
+.cart {
+  position: relative;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+}
+
+.cart-icon {
+  color: white;
+  transition: 0.3s;
+}
+
+.cart:hover .cart-icon {
+  color: #2563eb;
+}
+
+.cart span {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 10px;
+  padding: 2px 6px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* HERO SECTION */
+.services-hero {
+  background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('services-bg.jpg') center/cover;
+  padding: 80px 8%;
+  text-align: center;
+  color: white;
+}
+
+.services-hero h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+/* SERVICES GRID */
+.section {
+  padding: 80px 8%;
+  text-align: center;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.service-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.service-icon {
+  font-size: 40px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.service-card h3 {
+  color: #0f172a;
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+
+.service-card p {
+  color: #64748b;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* FOOTER - MATCHED TO OTHER PAGES */
+footer {
+  background: #0f172a;
+  color: #fff;
+  padding: 60px 8% 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+}
+
+.footer-grid h3 {
+  margin-bottom: 20px;
+}
+
+.footer-grid a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-grid a:hover {
+  color: white;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #333;
+  margin-top: 40px;
+  padding-top: 20px;
+  font-size: 13px;
+  color: #888;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav { flex-direction: column; gap: 10px; padding: 15px; }
+  .services-hero h1 { font-size: 30px; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <img src="nardeslogo.png" class="logo" alt="Nardes Logo">
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="cart" onclick="window.location.href='cart.html'">
+    <i class="fa-solid fa-cart-shopping cart-icon"></i>
+    <span id="cartCount">0</span>
+  </div>
+</nav>
+
+<section class="services-hero">
+  <h1>Professional Expertise</h1>
+  <p>Providing seamless integration of smart technology and electrical systems.</p>
+</section>
+
+<section class="section">
+  <div class="services-grid">
+    
+    <div class="service-card">
+      <span class="service-icon">🛠️</span>
+      <h3>Smart Device Installation</h3>
+      <p>Professional mounting and configuration of cameras, smart switches, and sensors to ensure 100% functionality from day one.</p>
+    </div>
+
+    <div class="service-card">
+      <span class="service-icon">🔄</span>
+      <h3>Automation Setup</h3>
+      <p>We create "scenes" and routines that allow your home or office to respond to your lifestyle automatically.</p>
+    </div>
+
+    <div class="service-card">
+      <span class="service-icon">⚡</span>
+      <h3>Electrical Integration</h3>
+      <p>Certified electrical wiring and panel upgrades to support modern smart infrastructure safely and efficiently.</p>
+    </div>
+
+    <div class="service-card">
+      <span class="service-icon">📞</span>
+      <h3>Technical Support</h3>
+      <p>Ongoing maintenance and remote troubleshooting to keep your smart systems running without downtime.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>Nardes Group</h3>
+      <p>Providing top-tier automation and electrical solutions across Ghana.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="products.html">Smart Products</a>
+      <a href="solutions.html">Our Solutions</a>
+      <a href="services.html">Services</a>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>Email: info.nardes2@gmail.com</p>
+      <p>Phone: +233 (0)27 255 8435 </p>
+      <p>Location: Accra, Ghana</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Nardes Group Limited | Smart Electrical & Automation Solutions
+  </div>
+</footer>
+
+<script>
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let count = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById("cartCount").innerText = count;
+  }
+  updateCartCount();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Solutions | Nardes Group</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* GLOBAL STYLES */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  scroll-behavior: smooth;
+}
+
+/* NAVBAR - CONSISTENT BLACK STYLE */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background: #000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+nav .logo { width: 100px; height: auto; }
+nav .nav-links a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.3s;
+}
+nav .nav-links a:hover { color: #2563eb; }
+
+/* Updated Cart Icon Styling */
+.cart {
+  position: relative;
+  cursor: pointer;
+  color: white;
+  font-size: 20px;
+}
+
+.cart-icon {
+  color: white;
+  transition: 0.3s;
+}
+
+.cart:hover .cart-icon {
+  color: #2563eb;
+}
+
+.cart span {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 10px;
+  padding: 2px 6px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+/* HERO SECTION */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('solution.png') center/cover no-repeat;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+.hero-content h1 { font-size: 48px; margin-bottom: 15px; }
+.hero-content p { font-size: 20px; max-width: 700px; margin: 0 auto 30px; opacity: 0.9; }
+.btn-quote {
+  background: #2563eb;
+  color: white;
+  padding: 15px 35px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.btn-quote:hover { background: #1d4ed8; }
+
+/* SOLUTIONS GRID */
+.section-title { text-align: center; padding: 60px 0 20px; }
+.section-title h2 { font-size: 32px; color: #0f172a; }
+
+.container { padding: 40px 8%; }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+.solution-card {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+.solution-card:hover { transform: translateY(-5px); }
+.solution-card h3 { color: #2563eb; font-size: 24px; margin-bottom: 15px; }
+.solution-card p { line-height: 1.7; color: #64748b; font-size: 15px; }
+
+/* QUOTE FORM SECTION */
+.quote-section {
+  background: #0f172a;
+  padding: 80px 8%;
+  display: flex;
+  justify-content: center;
+}
+.quote-box {
+  background: white;
+  width: 100%;
+  max-width: 700px;
+  padding: 50px;
+  border-radius: 20px;
+}
+.quote-box h2 { text-align: center; margin-bottom: 30px; color: #0f172a; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+.submit-btn {
+  width: 100%;
+  background: #2563eb;
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.submit-btn:hover { background: #1d4ed8; }
+
+/* FOOTER */
+footer { background: #0f172a; color: #fff; padding: 60px 8% 20px; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+.footer-grid h3 { margin-bottom: 20px; font-size: 18px; }
+.footer-grid a { display: block; color: #ccc; text-decoration: none; margin-bottom: 12px; font-size: 14px; }
+.footer-grid a:hover { color: white; }
+.footer-bottom { text-align: center; border-top: 1px solid #333; margin-top: 50px; padding-top: 20px; font-size: 13px; color: #888; }
+
+@media (max-width: 768px) {
+  nav { flex-direction: column; gap: 15px; padding: 20px; }
+  .hero h1 { font-size: 32px; }
+  .quote-box { padding: 30px 20px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <img src="nardeslogo.png" class="logo" alt="Nardes Group">
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="cart" onclick="window.location.href='cart.html'">
+    <i class="fa-solid fa-cart-shopping cart-icon"></i>
+    <span id="cartCount">0</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>Custom Smart Ecosystems</h1>
+    <p>We design and deploy intelligent environments tailored to your lifestyle and business needs.</p>
+    <a href="#quote" class="btn-quote">Request a Consultation</a>
+  </div>
+</section>
+
+<div class="container">
+  <div class="section-title">
+    <h2>Enterprise & Residential Solutions</h2>
+  </div>
+  <div class="grid">
+    <div class="solution-card">
+      <h3>Smart Home Automation</h3>
+      <p>Seamlessly control lighting, climate, and entertainment. Our residential solutions prioritize energy efficiency and luxurious convenience.</p>
+    </div>
+    <div class="solution-card">
+      <h3>Intelligent Workspace</h3>
+      <p>Optimize office productivity with automated boardrooms, smart access control, and centralized environmental management systems.</p>
+    </div>
+    <div class="solution-card">
+      <h3>Security & Surveillance</h3>
+      <p>Advanced AI-driven CCTV integration, biometric locks, and real-time alert systems to protect your most valuable assets.</p>
+    </div>
+  </div>
+</div>
+
+<section class="quote-section" id="quote">
+  <div class="quote-box">
+    <h2>Request a Project Quote</h2>
+    
+    <form action="https://api.web3forms.com/submit" method="POST">
+      
+      <input type="hidden" name="access_key" value="bd4e626b-8a7d-4d33-8619-825741cb8e83">
+
+      <input type="hidden" name="subject" value="New Solution Quote Request - Nardes Group">
+
+      <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="name" placeholder="Your Name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="email@example.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>Solution Interest</label>
+        <select name="solution_type">
+          <option value="Smart Home Setup">Smart Home Setup</option>
+          <option value="Office Automation">Office Automation</option>
+          <option value="Full Security System">Full Security System</option>
+          <option value="Energy Management">Energy Management</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Project Details</label>
+        <textarea name="message" rows="5" placeholder="Tell us about your requirements..." required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Send My Request</button>
+      
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>Nardes Group</h3>
+      <p>Providing top-tier automation and electrical solutions across Ghana.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="products.html">Smart Products</a>
+      <a href="solutions.html">Our Solutions</a>
+      <a href="services.html">Services</a>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>Email: info.nardes2@gmail.com</p>
+      <p>Phone: +233 (0)27 255 8435 </p>
+      <p>Location: Ghana</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Nardes Group Limited 
+  </div>
+</footer>
+
+<script>
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let count = cart.reduce((sum, item) => sum + item.qty, 0);
+    document.getElementById("cartCount").innerText = count;
+  }
+  updateCartCount();
+</script>
+
+</body>
+</html>

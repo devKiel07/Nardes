@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart | Nardes Group</title>
+
+<style>
+/* BODY */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+  color: #111;
+}
+
+/* NAVBAR - CONSISTENT STYLING */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background: #000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .logo {
+  width: 100px;
+  height: auto;
+}
+
+nav .nav-links a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+nav .nav-links a:hover {
+  color: #2563eb;
+}
+
+.cart {
+  position: relative;
+  cursor: pointer;
+  font-size: 18px;
+  color: white;
+}
+
+.cart span {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  font-size: 10px;
+  padding: 2px 5px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+}
+
+/* CART PAGE CONTENT */
+.cart-container {
+  padding: 40px 8%;
+  min-height: 60vh;
+}
+
+.cart-container h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #0f172a;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* MATCHED IMAGE BACKGROUND TO PRODUCTS PAGE */
+.item-info img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f8f9fa;
+  padding: 10px;
+}
+
+.item-details h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #0f172a;
+}
+
+.item-details p {
+  color: #666;
+  font-size: 14px;
+  margin: 5px 0;
+  max-width: 400px;
+}
+
+.item-price {
+  font-weight: 800;
+  color: #2563eb;
+  margin-top: 5px;
+}
+
+/* QUANTITY CONTROLS */
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f1f5f9;
+  padding: 8px 15px;
+  border-radius: 25px;
+}
+
+.quantity button {
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #2563eb;
+  font-weight: bold;
+}
+
+.quantity span {
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ACTIONS */
+.remove {
+  color: #ef4444;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  margin-left: 20px;
+  transition: 0.2s;
+}
+
+.remove:hover {
+  text-decoration: underline;
+}
+
+.total-box {
+  margin-top: 30px;
+  padding: 30px;
+  background: #fff;
+  border-radius: 12px;
+  text-align: right;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.total-box h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #0f172a;
+}
+
+.checkout-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 15px 50px;
+  background: #2563eb;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.checkout-btn:hover {
+  background: #0f172a;
+  transform: translateY(-2px);
+}
+
+.empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: #64748b;
+}
+
+/* FOOTER STYLING */
+footer {
+  background: #0f172a;
+  color: #fff;
+  padding: 60px 8% 30px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+}
+
+.footer-grid h3 { margin-bottom: 20px; }
+
+.footer-grid a {
+  display: block;
+  color: #ccc;
+  text-decoration: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #333;
+  margin-top: 40px;
+  padding-top: 20px;
+  font-size: 13px;
+  color: #888;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav { flex-direction: column; gap: 10px; padding: 15px; }
+  .cart-item { flex-direction: column; gap: 15px; text-align: center; }
+  .item-info { flex-direction: column; }
+  .item-details p { max-width: 100%; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <img src="nardeslogo.png" class="logo" alt="Nardes Logo">
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="cart">
+    🛒 <span id="cartCount">0</span>
+  </div>
+</nav>
+
+<div class="cart-container">
+  <h2>Your Shopping Cart</h2>
+  <div id="cartItems"></div>
+  
+  <div id="summaryArea">
+    <div class="total-box">
+        <h3 id="totalPrice">Grand Total: $0</h3>
+        <button class="checkout-btn" onclick="handleCheckout()">Checkout Now</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3>Nardes Group</h3>
+      <p>Providing top-tier automation and electrical solutions across Ghana.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <a href="index.html">Home</a>
+      <a href="products.html">Smart Products</a>
+      <a href="solutions.html">Our Solutions</a>
+      <a href="services.html"> Services</a>
+    </div>
+    <div>
+      <h3>Company</h3>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>Email: info.nardes@gmail.com  </p>
+      <p>Phone: +233 (0)27 255 8435 </p>
+      <p>Location: Accra, Ghana</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2026 Nardes Group Limited | Smart Electrical & Automation Solutions
+  </div>
+</footer>
+
+<script>
+function loadCart(){
+  // Load cart from localStorage
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const container = document.getElementById("cartItems");
+  const summary = document.getElementById("summaryArea");
+  container.innerHTML = "";
+
+  let total = 0;
+
+  if(cart.length === 0){
+    container.innerHTML = `
+      <div class='empty'>
+        <p>Your cart is empty.</p>
+        <a href="products.html" class="checkout-btn" style="text-decoration:none;">Start Shopping</a>
+      </div>`;
+    summary.style.display = "none";
+    updateCartCount();
+    return;
+  }
+
+  summary.style.display = "block";
+
+  cart.forEach((item, index)=>{
+    total += item.price * item.qty;
+
+    // item.img and item.desc are pulled directly from what was saved in products.html
+    container.innerHTML += `
+      <div class="cart-item">
+        <div class="item-info">
+          <img src="${item.img}" alt="${item.name}">
+          <div class="item-details">
+            <h3>${item.name}</h3>
+            <p>${item.desc || 'Quality smart solution for your home.'}</p>
+            <p class="item-price">$${item.price}</p>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center;">
+            <div class="quantity">
+              <button onclick="decreaseQty(${index})">−</button>
+              <span>${item.qty}</span>
+              <button onclick="increaseQty(${index})">+</button>
+            </div>
+            <div class="remove" onclick="removeItem(${index})">Remove</div>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById("totalPrice").innerText = "Grand Total: $" + total;
+  updateCartCount();
+}
+
+function updateCartCount(){
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let count = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById("cartCount").innerText = count;
+}
+
+function increaseQty(index){
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  cart[index].qty++;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+function decreaseQty(index){
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  if(cart[index].qty > 1){
+    cart[index].qty--;
+  } else {
+    removeItem(index);
+    return;
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+function removeItem(index){
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  cart.splice(index,1);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  loadCart();
+}
+
+function handleCheckout() {
+    // You can change this to window.location.href = 'checkout.html' 
+    // or trigger your Paystack function here.
+    alert('Proceeding to Checkout...');
+}
+
+// Initial load
+loadCart();
+</script>
+
+</body>
+</html>
