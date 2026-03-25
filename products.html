@@ -3,27 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nardes Smart Store</title>
+<title>Nardes Smart Store | Products</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
-/* ADDED FOR THE NEW CART ICON */
+/* GLOBAL STYLES */
+body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #f5f5f5; color: #111; }
+
+/* NAVBAR */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background: #000;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .logo { width: 100px; height: auto; }
+
+/* NAV LINKS CONTAINER */
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  color: white;
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover { color: #2563eb; }
+
+/* HAMBURGER MENU */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+/* CART STYLING */
 .cart {
   position: relative;
   cursor: pointer;
   color: white;
   font-size: 20px;
+  margin-left: 20px;
 }
 
-.cart-icon {
-  color: white;
-  transition: 0.3s;
-}
-
-.cart:hover .cart-icon {
-  color: #2563eb;
-}
+.cart-icon { transition: 0.3s; }
+.cart:hover .cart-icon { color: #2563eb; }
 
 .cart span {
   position: absolute;
@@ -38,10 +75,32 @@
   transition: transform 0.2s ease;
 }
 
-/* EXISTING ANIMATION & IMAGE BOX LOGIC */
-.bump {
-  transform: scale(1.4);
+.bump { transform: scale(1.4); }
+
+/* PRODUCT STORE STYLES */
+.header-section { padding: 40px 8%; text-align: center; }
+.search-filter { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.search-filter select, .search-filter input { padding: 12px; border-radius: 25px; border: 1px solid #ddd; outline: none; }
+.search-bar { display: flex; }
+.search-bar input { border-radius: 25px 0 0 25px; width: 200px; }
+.search-bar button { border: none; background: #2563eb; color: white; padding: 12px 20px; border-radius: 0 25px 25px 0; cursor: pointer; font-weight: bold; }
+
+.products-container { padding: 0 8% 60px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; justify-items: center; }
+
+.card { 
+  background: #fff; 
+  border-radius: 15px; 
+  padding: 20px; 
+  text-align: center; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+  width: 100%; 
+  max-width: 300px; 
+  transition: 0.3s; 
+  box-sizing: border-box;
 }
+
+.card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
 
 .image-box {
   height: 200px;
@@ -50,68 +109,89 @@
   align-items: center;
   background: #f8f9fa;
   border-radius: 10px;
-  margin-bottom: 10px;
-}
-.image-box img {
-  max-width: 85%;
-  max-height: 85%;
-  object-fit: contain;
+  margin-bottom: 15px;
 }
 
-/* REST OF YOUR STYLING */
-body{ margin:0; font-family:Segoe UI, sans-serif; background:#f5f5f5; color:#111; }
-nav{ display:flex; justify-content:space-between; align-items:center; padding:10px 40px; background:#000; position: sticky; top:0; z-index:1000; }
-nav .logo{ width:100px; height:auto; }
-nav .nav-links a{ color:white; margin-left:15px; text-decoration:none; font-weight:600; font-size:14px; }
-nav .nav-links a:hover{ color:#2563eb; }
+.image-box img { max-width: 85%; max-height: 85%; object-fit: contain; }
+.stars { color: #ffc107; margin-bottom: 8px; font-size: 14px; }
+.card h3 { font-size: 18px; margin: 10px 0; color: #0f172a; }
+.price { font-weight: 800; font-size: 20px; color: #111; margin: 10px 0; }
 
-.header-section{ padding:40px 8%; text-align:center; }
-.search-filter{ display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
-.search-filter select, .search-filter input{ padding:12px; border-radius:25px; border:1px solid #ddd; outline: none; }
-.search-bar{ display:flex; }
-.search-bar input{ border-radius:25px 0 0 25px; }
-.search-bar button{ border:none; background:#2563eb; color:white; padding:12px 20px; border-radius:0 25px 25px 0; cursor:pointer; }
+.add-btn { 
+  width: 100%; 
+  padding: 12px; 
+  border: none; 
+  border-radius: 8px; 
+  background: #2563eb; 
+  color: #fff; 
+  font-weight: 600; 
+  cursor: pointer; 
+  transition: 0.3s; 
+}
+.add-btn:hover { background: #1d4ed8; }
 
-.products{ padding:0 8% 40px; }
-.grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; justify-items:center; }
-.card{ background:#fff; border-radius:15px; padding:15px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.08); width:100%; max-width:280px; transition:0.3s; }
-.card:hover{ transform:translateY(-5px); }
-.stars{ color:#ffc107; margin-bottom:8px; }
-.price{ font-weight:bold; margin:10px 0; }
-.add-btn{ width: 100%; padding: 12px; border: none; border-radius: 8px; background: #2563eb; color: #fff; font-weight: 600; cursor: pointer; transition: 0.3s; }
-.add-btn:hover{ background:#021f78; }
+/* FOOTER */
+footer { background: #0f172a; color: #fff; padding: 60px 8% 30px; }
+.footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+.footer-grid h3 { margin-bottom: 20px; }
+.footer-grid p, .footer-grid a { color: #ccc; font-size: 14px; text-decoration: none; line-height: 1.8; display: block; }
+.footer-grid a:hover { color: #fff; }
+.footer-bottom { margin-top: 40px; border-top: 1px solid #333; padding-top: 20px; text-align: center; color: #888; font-size: 13px; }
 
-footer{ background:#0f172a; color:#fff; padding:50px 8%; }
-.footer-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:30px; }
-.footer-grid a{ display:block; color:#ccc; text-decoration:none; margin-bottom:8px; font-size:14px; }
-.footer-bottom{ margin-top:30px; border-top:1px solid #333; padding-top:20px; text-align:center; color:#aaa; }
-.footer-grid a:hover { color: white; }
-
-@media(max-width:1024px){ .grid{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:768px){ nav{flex-direction:column; padding:15px 20px; gap:10px;} .grid{grid-template-columns:1fr;} .footer-grid{grid-template-columns:1fr;} }
+/* MOBILE RESPONSIVE */
+@media(max-width: 768px) {
+  nav { padding: 15px 25px; }
+  .menu-toggle { display: block; order: 2; }
+  .logo { order: 1; }
+  
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    background: #000;
+    flex-direction: column;
+    display: none;
+    padding: 20px 0;
+    border-top: 1px solid #222;
+  }
+  
+  .nav-links.active { display: flex; }
+  .nav-links a { margin: 12px 0; font-size: 18px; margin-left: 0; }
+  
+  .cart { margin: 20px 0 10px 0; font-size: 22px; }
+  .grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+}
 </style>
 </head>
 
 <body>
 
 <nav>
-  <img src="nardeslogo.png" class="logo" alt="Nardes Logo">
+  <img src="nardeslogo.png" alt="Nardes Logo" class="logo">
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
   <div class="nav-links">
     <a href="index.html">Home</a>
-    <a href="products.html">Products</a>
+    <a href="products.html" style="color:#2563eb;">Products</a>
     <a href="solutions.html">Solutions</a>
     <a href="services.html">Services</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-  </div>
-  <div class="cart" onclick="window.location.href='cart.html'">
-    <i class="fa-solid fa-cart-shopping cart-icon"></i>
-    <span id="cartCount">0</span>
+    
+    <div class="cart" onclick="window.location.href='cart.html'">
+      <i class="fa-solid fa-cart-shopping cart-icon"></i>
+      <span id="cartCount">0</span>
+    </div>
   </div>
 </nav>
 
 <div class="header-section">
-  <h2>Our Products</h2>
+  <h2>Our Smart Solutions</h2>
   <div class="search-filter">
     <select id="categoryFilter" onchange="renderProducts()">
       <option value="all">All Categories</option>
@@ -122,13 +202,13 @@ footer{ background:#0f172a; color:#fff; padding:50px 8%; }
       <option value="security">Smart Security</option>
     </select>
     <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="Search products...">
+      <input type="text" id="searchInput" placeholder="Search products..." onkeyup="renderProducts()">
       <button onclick="renderProducts()">Search</button>
     </div>
   </div>
 </div>
 
-<div class="products">
+<div class="products-container">
   <div class="grid" id="productGrid"></div>
 </div>
 
@@ -136,34 +216,42 @@ footer{ background:#0f172a; color:#fff; padding:50px 8%; }
   <div class="footer-grid">
     <div>
       <h3>Nardes Group</h3>
-      <p>Providing top-tier automation and electrical solutions across Ghana..</p>
+      <p>Providing top-tier automation and electrical solutions across Ghana.</p>
     </div>
     <div>
       <h3>Quick Links</h3>
       <a href="index.html">Home</a>
       <a href="products.html">Smart Products</a>  
-      <a href="solutions.html">Solutions</a>
+      <a href="solutions.html">Our Solutions</a>
       <a href="services.html">Services</a>
     </div>
     <div>
       <h3>Company</h3>
       <a href="about.html">About Us</a>
-      
-      <a href="contact.html">Contact</a>
+      <a href="contact.html">Contact Us</a>
     </div>
     <div>
       <h3>Contact</h3>
       <p>Email: info.nardes2@gmail.com</p>
       <p>Phone: +233 (0)27 255 8435 </p>
-      <p>Location: Ghana</p>
+      <p>Location: Accra, Ghana</p>
     </div>
   </div>
   <div class="footer-bottom">
-    © 2026 Nardes Group Limited
+    © 2026 Nardes Group Limited | Smart Electrical & Automation Solutions
   </div>
 </footer>
 
 <script>
+/* MENU TOGGLE */
+function toggleMenu(){
+  document.querySelector(".nav-links").classList.toggle("active");
+  const icon = document.querySelector(".menu-toggle i");
+  icon.classList.toggle("fa-bars");
+  icon.classList.toggle("fa-xmark");
+}
+
+/* PRODUCT DATA */
 const products = [
   {name:"WiFi Smart Switch", price:32, category:"switch", img:"wifismartswitch.png", stars:5, desc:"Control lighting remotely with smart WiFi-enabled switch."},
   {name:"Automated Switch", price:28, category:"switch", img:"automatedswitch.png", stars:4, desc:"Advanced automation switch for modern smart homes."},
@@ -222,6 +310,7 @@ function updateCartUI() {
   document.getElementById("cartCount").innerText = count;
 }
 
+// Initialization
 updateCartUI();
 renderProducts();
 </script>
